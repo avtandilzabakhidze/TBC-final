@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-public class TbcAtmBranchApi {
+public class AtmBranchApi {
     private static final String BASE_PATH = "/api/v1/atmsAndBranches/list";
 
     public Response getAtmsAndBranches(Locale locale) {

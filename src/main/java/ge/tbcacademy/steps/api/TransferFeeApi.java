@@ -6,8 +6,7 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-public class TbcApi {
-
+public class TransferFeeApi {
     public Response getTransferFee(int amount, Ccy currencyCode, ReceiveCountryCode receiveCountryCode) {
         return given()
                 .basePath("/api/v1/moneyTransfer/fees")
