@@ -1,5 +1,4 @@
 package ge.tbcacademy.enums;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -7,9 +6,11 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @ToString
-public enum Locale {
-    GEORGIAN("ka-GE"),
-    ENGLISH("en-US");
+public enum CountryCode {
+    USA("USA"),
+    GRC("GRC"),
+    ISR("ISR"),
+    SRB("SRB");
 
-    private final String localeCode;
+    private final String code;
 }

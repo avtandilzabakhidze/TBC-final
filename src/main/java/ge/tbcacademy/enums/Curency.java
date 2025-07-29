@@ -7,9 +7,11 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @ToString
-public enum Locale {
-    GEORGIAN("ka-GE"),
-    ENGLISH("en-US");
+public enum Curency {
+    GEL("GEL"),
+    USD("USD"),
+    EUR("EUR"),
+    GBP("GBP");
 
-    private final String localeCode;
+    private final String ccy;
 }

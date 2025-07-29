@@ -1,5 +1,5 @@
-import ge.tbcacademy.enums.Ccy;
-import ge.tbcacademy.enums.ReceiveCountryCode;
+import ge.tbcacademy.enums.Curency;
+import ge.tbcacademy.enums.CountryCode;
 import ge.tbcacademy.steps.TransferFeeSteps;
 import ge.tbcacademy.steps.api.TransferFeeApi;
 import io.restassured.RestAssured;
@@ -20,7 +20,7 @@ public class TransferFeeTest {
 
         @Test
         public void testTransferFee_USD_USA() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_100, Ccy.USD, ReceiveCountryCode.USA);
+                Response response = transferFeeApi.getTransferFee(AMOUNT_100, Curency.USD, CountryCode.USA);
                 new TransferFeeSteps(response)
                         .validateStatusCode(STATUS_200)
                         .validateContentType(APPLICATION)
@@ -29,7 +29,7 @@ public class TransferFeeTest {
 
         @Test
         public void testTransferFee_USD_GRC() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_200, Ccy.USD, ReceiveCountryCode.GRC);
+                Response response = transferFeeApi.getTransferFee(AMOUNT_200, Curency.USD, CountryCode.GRC);
                 new TransferFeeSteps(response)
                         .validateStatusCode(STATUS_200)
                         .validateContentType(APPLICATION)
@@ -38,7 +38,7 @@ public class TransferFeeTest {
 
         @Test
         public void testTransferFee_GBP_ISR() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_500, Ccy.GBP, ReceiveCountryCode.ISR);
+                Response response = transferFeeApi.getTransferFee(AMOUNT_500, Curency.GBP, CountryCode.ISR);
                 new TransferFeeSteps(response)
                         .validateStatusCode(STATUS_200)
                         .validateContentType(APPLICATION)
@@ -47,7 +47,7 @@ public class TransferFeeTest {
 
         @Test
         public void testTransferFee_GEL_SRB() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_1000, Ccy.GEL, ReceiveCountryCode.SRB);
+                Response response = transferFeeApi.getTransferFee(AMOUNT_1000, Curency.GEL, CountryCode.SRB);
                 new TransferFeeSteps(response)
                         .validateStatusCode(STATUS_200)
                         .validateContentType(APPLICATION)
