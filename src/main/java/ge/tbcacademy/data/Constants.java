@@ -14,6 +14,7 @@ public class Constants {
     public static final int STATUS_200 = 200,
             ZERO = 0,
             AMOUNT_100 = 100,
+            AMOUNT_999999999 = 999999999,
             AMOUNT_200 = 200,
             AMOUNT_500 = 500,
             AMOUNT_1000 = 1000;

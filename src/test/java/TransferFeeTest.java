@@ -19,8 +19,8 @@ public class TransferFeeTest {
         }
 
         @Test
-        public void validateFeeWithUnsupportedCountryCode() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_100, Curency.USD, CountryCode.UNSUPPORTED_RUS);
+        public void validateFeeWithUnsupportedManyAmounts() {
+                Response response = transferFeeApi.getTransferFee(AMOUNT_999999999, Curency.USD, CountryCode.USA);
                 new TransferFeeSteps(response)
                         .validateStatusCode(STATUS_200)
                         .validateContentType(APPLICATION)
