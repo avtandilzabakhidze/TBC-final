@@ -2,6 +2,9 @@ package ge.tbcacademy.steps;
 
 import io.restassured.response.Response;
 
+import static ge.tbcacademy.data.Constants.*;
+import static org.hamcrest.Matchers.hasSize;
+
 public class TransferFeeSteps {
     private final Response response;
 
@@ -19,8 +22,8 @@ public class TransferFeeSteps {
         return this;
     }
 
-    public TransferFeeSteps printPretty() {
-        System.out.println(response.asPrettyString());
+    public TransferFeeSteps validateEmptyArrayResponse() {
+        response.then().body(EMPTY, hasSize(ZERO));
         return this;
     }
 }

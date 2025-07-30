@@ -6,12 +6,13 @@ public class Constants {
             APPLICATION = "application/json",
             START_LOCATE = "{\"Locale\": \"",
             END_LOCATE =  "\"}",
+            EMPTY =  "",
             USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
             BASE_PATH_ATM = "/api/v1/atmsAndBranches/list",
             BASE_PATH_FEE = "/api/v1/moneyTransfer/fees";
 
-
     public static final int STATUS_200 = 200,
+            ZERO = 0,
             AMOUNT_100 = 100,
             AMOUNT_200 = 200,
             AMOUNT_500 = 500,

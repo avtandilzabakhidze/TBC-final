@@ -19,38 +19,11 @@ public class TransferFeeTest {
         }
 
         @Test
-        public void testTransferFee_USD_USA() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_100, Curency.USD, CountryCode.USA);
+        public void validateFeeWithUnsupportedCountryCode() {
+                Response response = transferFeeApi.getTransferFee(AMOUNT_100, Curency.USD, CountryCode.UNSUPPORTED_RUS);
                 new TransferFeeSteps(response)
                         .validateStatusCode(STATUS_200)
                         .validateContentType(APPLICATION)
-                        .printPretty();
-        }
-
-        @Test
-        public void testTransferFee_USD_GRC() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_200, Curency.USD, CountryCode.GRC);
-                new TransferFeeSteps(response)
-                        .validateStatusCode(STATUS_200)
-                        .validateContentType(APPLICATION)
-                        .printPretty();
-        }
-
-        @Test
-        public void testTransferFee_GBP_ISR() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_500, Curency.GBP, CountryCode.ISR);
-                new TransferFeeSteps(response)
-                        .validateStatusCode(STATUS_200)
-                        .validateContentType(APPLICATION)
-                        .printPretty();
-        }
-
-        @Test
-        public void testTransferFee_GEL_SRB() {
-                Response response = transferFeeApi.getTransferFee(AMOUNT_1000, Curency.GEL, CountryCode.SRB);
-                new TransferFeeSteps(response)
-                        .validateStatusCode(STATUS_200)
-                        .validateContentType(APPLICATION)
-                        .printPretty();
+                        .validateEmptyArrayResponse();
         }
 }
