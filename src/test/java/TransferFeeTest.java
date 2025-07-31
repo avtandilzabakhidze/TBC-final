@@ -19,7 +19,7 @@ public class TransferFeeTest {
         }
 
         @Test
-        public void validateFeeWithUnsupportedManyAmounts() {
+        public void validateFeeWithMoreThanMaximumAmount () {
                 Response response = transferFeeApi.getTransferFee(AMOUNT_999999999, Curency.USD, CountryCode.USA);
                 new TransferFeeSteps(response)
                         .validateStatusCode(STATUS_200)
