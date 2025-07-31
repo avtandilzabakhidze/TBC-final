@@ -10,7 +10,6 @@ public enum CountryCode {
     USA("USA"),
     GRC("GRC"),
     ISR("ISR"),
-    UNSUPPORTED_RUS("RUS"),//just unsupported : )
     SRB("SRB");
 
     private final String code;

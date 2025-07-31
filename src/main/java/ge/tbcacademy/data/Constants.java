@@ -4,18 +4,21 @@ public class Constants {
     public static final String BASE_URI = "https://apigw.tbc.ge",
             TBC_URL = "https://tbcbank.ge",
             APPLICATION = "application/json",
+            PAYLOAD_BRANCHES = "payload.branches",
             START_LOCATE = "{\"Locale\": \"",
-            END_LOCATE =  "\"}",
-            EMPTY =  "",
+            END_LOCATE = "\"}",
+            EMPTY = "",
             USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
             BASE_PATH_ATM = "/api/v1/atmsAndBranches/list",
-            BASE_PATH_FEE = "/api/v1/moneyTransfer/fees";
+            BASE_PATH_FEE = "/api/v1/moneyTransfer/fees",
+            OUTSIDE_GEORGIA = "Found outside Georgia";
 
     public static final int STATUS_200 = 200,
             ZERO = 0,
-            AMOUNT_100 = 100,
-            AMOUNT_999999999 = 999999999,
-            AMOUNT_200 = 200,
-            AMOUNT_500 = 500,
-            AMOUNT_1000 = 1000;
+            AMOUNT_999999999 = 999999999;
+
+    public static final double MIN_LAT = 41.0,
+            MAX_LAT = 43.6,
+            MIN_LNG = 40.0,
+            MAX_LNG = 47.5;
 }

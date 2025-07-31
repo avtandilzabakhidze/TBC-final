@@ -18,20 +18,11 @@ public class AtmBranchApiTest {
     }
 
     @Test
-    public void testAtmsAndBranches_GeorgianLocale() {
+    public void testATMAndBranchLocationsWithinGeorgia() {
         Response response = atmBranchApi.getAtmsAndBranches(Locale.GEORGIAN);
         new AtmBranchSteps(response)
                 .validateStatusCode(STATUS_200)
                 .validateContentType(APPLICATION)
-                .printPretty();
-    }
-
-    @Test
-    public void testAtmsAndBranches_EnglishLocale() {
-        Response response = atmBranchApi.getAtmsAndBranches(Locale.ENGLISH);
-        new AtmBranchSteps(response)
-                .validateStatusCode(STATUS_200)
-                .validateContentType(APPLICATION)
-                .printPretty();
+                .validateCoordinatesWithinGeorgia();
     }
 }
