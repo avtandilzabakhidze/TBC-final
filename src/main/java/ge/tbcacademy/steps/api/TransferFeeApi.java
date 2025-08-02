@@ -14,7 +14,7 @@ public class TransferFeeApi {
                 .queryParam("amount", amount)
                 .queryParam("currencyCode", currencyCode)
                 .queryParam("receiveCountryCode", receiveCountryCode)
-                .header("accept", APPLICATION)
+                .header("origin", TBC_URL)
                 .when()
                 .get();
     }

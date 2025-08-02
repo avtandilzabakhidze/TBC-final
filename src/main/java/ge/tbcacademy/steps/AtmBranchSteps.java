@@ -1,6 +1,6 @@
 package ge.tbcacademy.steps;
 
-import ge.tbcacademy.data.model.AtmBranch;
+import ge.tbcacademy.data.model.atm.AtmBranch;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
