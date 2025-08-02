@@ -1,25 +1,14 @@
 import ge.tbcacademy.enums.Locale;
 import ge.tbcacademy.steps.AtmBranchSteps;
-import ge.tbcacademy.steps.api.AtmBranchApi;
 import io.qameta.allure.*;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static ge.tbcacademy.data.Constants.*;
+import static ge.tbcacademy.data.Constants.APPLICATION;
+import static ge.tbcacademy.data.Constants.STATUS_200;
 
 @Epic("ATM and Branch Management")
-public class AtmBranchApiTest {
-    AtmBranchApi atmBranchApi;
-
-    @BeforeClass
-    @Step("Setup test environment")
-    public void setup() {
-        RestAssured.baseURI = BASE_URI;
-        atmBranchApi = new AtmBranchApi();
-    }
-
+public class AtmBranchApiTest extends BaseTest {
     @Test
     @Story("Location Validation")
     @Severity(SeverityLevel.CRITICAL)

@@ -3,23 +3,13 @@ import ge.tbcacademy.data.model.blogs.BlogResponse;
 import ge.tbcacademy.enums.BlogSegment;
 import ge.tbcacademy.enums.Locale;
 import ge.tbcacademy.steps.BlogSteps;
-import ge.tbcacademy.steps.api.BlogApi;
-import io.restassured.RestAssured;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static ge.tbcacademy.data.Constants.*;
+import static ge.tbcacademy.data.Constants.PAGE_SIZE;
+import static ge.tbcacademy.data.Constants.SEARCH_TITLE;
 
 
-public class BlogScrollSearchTest {
-    private BlogApi blogApi;
-
-    @BeforeClass
-    public void setup() {
-        RestAssured.baseURI = BASE_URI;
-        blogApi = new BlogApi();
-    }
-
+public class BlogScrollSearchTest extends BaseTest {
     @Test
     public void scrollSearchUsingPojoAndSteps() {
         int pageIndex = 0;
@@ -44,5 +34,4 @@ public class BlogScrollSearchTest {
 
         new BlogSteps(null).assertTitleNotFound(titleFound, SEARCH_TITLE);
     }
-
 }
