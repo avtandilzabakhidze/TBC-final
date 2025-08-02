@@ -14,8 +14,8 @@ import static ge.tbcacademy.data.Constants.STATUS_200;
 @Link(name = "CRM-T15", url = "https://shorturl.at/0kegg")
 @Listeners(AllureTestNg.class)
 public class AtmBranchApiTest extends BaseTest {
-    @Story("Location Validation")
-    @Test(description = "Validate ATM and Branch Locations Are Within Georgia")
+    @Story("Validate ATM and Branch Locations Are Within Georgia")
+    @Test(description = "Retrieve the list of ATMs and branches")
     @Severity(SeverityLevel.CRITICAL)
     public void testATMAndBranchLocationsWithinGeorgia() {
         Response response = atmBranchApi.getAtmsAndBranches(Locale.GEORGIAN);

@@ -13,8 +13,8 @@ import static ge.tbcacademy.data.Constants.*;
 @Link(name = "CRM-T14", url = "https://shorturl.at/AM226")
 @Listeners(AllureTestNg.class)
 public class TransferFeeTest extends BaseTest {
-    @Story("Fee Validation")
-    @Test(description = "Validate remittance fee with more than maximum amount")
+    @Story("Validate ATM and Branch Locations Are Within Georgia")
+    @Test(description = "Fetch the remittance fee")
     @Severity(SeverityLevel.CRITICAL)
     public void validateFeeWithMoreThanMaximumAmount() {
         Response response = transferFeeApi.getTransferFee(AMOUNT_999999999, Curency.USD, CountryCode.USA);
