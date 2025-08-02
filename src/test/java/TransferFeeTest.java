@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import static ge.tbcacademy.data.Constants.*;
 
 @Epic("Transfer Management")
-@Feature("Transfer Fee Calculation")
 public class TransferFeeTest {
     TransferFeeApi transferFeeApi;
 
@@ -26,7 +25,7 @@ public class TransferFeeTest {
     @Story("Fee Validation")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that transfer fee returns empty array for amounts exceeding maximum limit")
-    @Issue("JIRA-456")
+    @Link(name = "Test Case", url = "https://shorturl.at/0kegg")
     public void validateFeeWithMoreThanMaximumAmount() {
         Response response = transferFeeApi.getTransferFee(AMOUNT_999999999, Curency.USD, CountryCode.USA);
         new TransferFeeSteps(response)

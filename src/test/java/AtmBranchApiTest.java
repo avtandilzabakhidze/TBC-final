@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import static ge.tbcacademy.data.Constants.*;
 
 @Epic("ATM and Branch Management")
-@Feature("ATM Branch Locations")
 public class AtmBranchApiTest {
     AtmBranchApi atmBranchApi;
 
@@ -25,7 +24,7 @@ public class AtmBranchApiTest {
     @Story("Location Validation")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify that all ATM and branch locations are within Georgia's geographical boundaries")
-    @Link(name = "Test Case", url = "https://your-test-management-tool.com/test-case-123")
+    @Link(name = "Test Case", url = "https://shorturl.at/AM226")
     public void testATMAndBranchLocationsWithinGeorgia() {
         Response response = atmBranchApi.getAtmsAndBranches(Locale.GEORGIAN);
         new AtmBranchSteps(response)

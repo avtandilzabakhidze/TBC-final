@@ -46,8 +46,7 @@ public class AtmBranchSteps {
             }
         }
 
-        Assert.assertTrue(invalidLocations.isEmpty(),
-                OUTSIDE_GEORGIA + ". Invalid locations found: " + invalidLocations.size());
+        Assert.assertTrue(invalidLocations.isEmpty(),OUTSIDE_GEORGIA);
         return this;
     }
 }
