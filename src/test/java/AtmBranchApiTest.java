@@ -10,7 +10,7 @@ import static ge.tbcacademy.data.Constants.APPLICATION;
 import static ge.tbcacademy.data.Constants.STATUS_200;
 
 
-@Epic("ATM and Branch Management")
+@Epic("API")
 @Link(name = "CRM-T15", url = "https://shorturl.at/AM226")
 @Listeners(AllureTestNg.class)
 public class AtmBranchApiTest extends BaseTest {

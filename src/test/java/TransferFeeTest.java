@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import static ge.tbcacademy.data.Constants.*;
 
-@Epic("Transfer Management")
+@Epic("API")
 @Link(name = "CRM-T14", url = "https://shorturl.at/0kegg")
 @Listeners(AllureTestNg.class)
 public class TransferFeeTest extends BaseTest {
