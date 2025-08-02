@@ -21,7 +21,6 @@ public class ExchangeRateSteps {
     public ExchangeRateSteps validateIsos(String iso1, String iso2) {
         List<String> isoList = response.jsonPath().getList(RATES_ISO_PATH);
         isoList.add(GEL);
-
         if (!isoList.contains(iso1) || !isoList.contains(iso2)) {
             throw new IllegalArgumentException(
                     String.format("Invalid ISOs: iso1=%s, iso2=%s", iso1, iso2)

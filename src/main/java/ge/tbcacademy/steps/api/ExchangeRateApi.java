@@ -34,7 +34,7 @@ public class ExchangeRateApi {
                 .when()
                 .get()
                 .then()
-                .log().all()
+              //  .log().all()
                 .statusCode(200)
                 .extract()
                 .response();

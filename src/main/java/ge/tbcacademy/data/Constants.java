@@ -21,8 +21,6 @@ public class Constants {
             SELL_RATE_PATH = "sellRate",
             RATES_ISO_PATH = "rates.iso",
             GEL = "GEL",
-            ISO1 = "USD",
-            ISO2 = "TRY",
             SEARCH_TITLE = "ელენე შენგელიას პასუხი";
 
     public static final int
