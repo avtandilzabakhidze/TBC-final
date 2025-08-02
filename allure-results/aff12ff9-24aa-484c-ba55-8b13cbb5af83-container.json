@@ -1,0 +1,1 @@
+{"uuid":"aff12ff9-24aa-484c-ba55-8b13cbb5af83","name":"TransferFeeTest","children":["72d2d941-2f78-4438-ac24-e448f18e4f76"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1754152510783,"stop":1754152510783}],"afters":[],"start":1754152504453,"stop":1754152511118}

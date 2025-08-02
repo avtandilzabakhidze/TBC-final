@@ -1,5 +1,3 @@
-import ge.tbcacademy.data.model.blogs.BlogRequest;
-import ge.tbcacademy.data.model.blogs.BlogResponse;
 import ge.tbcacademy.enums.BlogSegment;
 import ge.tbcacademy.enums.Locale;
 import ge.tbcacademy.steps.BlogSteps;
@@ -19,26 +17,8 @@ public class BlogScrollSearchTest extends BaseTest {
     @Test(description = "Fetch Blogs Until Title Is Found or Confirmed Missing")
     @Severity(SeverityLevel.CRITICAL)
     public void scrollSearchUsingPojoAndSteps() {
-        int pageIndex = 0;
-        boolean titleFound = false;
-        String matchedFullTitle = null;
-
-        while (true) {
-            BlogRequest request = new BlogRequest(BlogSegment.ALL, pageIndex, PAGE_SIZE, Locale.GEORGIAN);
-            BlogResponse response = blogApi.scrollSearch(request);
-            BlogSteps steps = new BlogSteps(response);
-
-            if (steps.isEmpty()) break;
-
-            matchedFullTitle = steps.findMatchingTitleIgnoreCase(SEARCH_TITLE);
-            if (matchedFullTitle != null) {
-                steps.logFoundTitle(matchedFullTitle);
-                titleFound = true;
-                break;
-            }
-            pageIndex++;
-        }
-
-        new BlogSteps(null).assertTitleNotFound(titleFound, SEARCH_TITLE);
+        new BlogSteps(blogApi)
+                .scrollUntilTitleFound(SEARCH_TITLE, BlogSegment.ALL, PAGE_SIZE, Locale.GEORGIAN)
+                .assertTitleNotFound(SEARCH_TITLE);
     }
 }

@@ -11,7 +11,7 @@ public class BaseTest {
     AtmBranchApi atmBranchApi;
     TransferFeeApi transferFeeApi;
     ExchangeRateApi exchangeRateApi;
-    BlogApi blogApi;
+    protected BlogApi blogApi;
 
     @BeforeClass
     public void setup() {

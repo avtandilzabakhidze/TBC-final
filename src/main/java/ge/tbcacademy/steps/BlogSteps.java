@@ -1,27 +1,52 @@
 package ge.tbcacademy.steps;
 
 import ge.tbcacademy.data.model.blogs.BlogEntry;
+import ge.tbcacademy.data.model.blogs.BlogRequest;
 import ge.tbcacademy.data.model.blogs.BlogResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ge.tbcacademy.enums.BlogSegment;
+import ge.tbcacademy.enums.Locale;
+import ge.tbcacademy.steps.api.BlogApi;
 
 
 public class BlogSteps {
-    private final BlogResponse blogResponse;
-    private static final Logger logger = LoggerFactory.getLogger(BlogSteps.class);
+    private final BlogApi blogApi;
+    private BlogResponse response;
+    private boolean titleFound;
 
-    public BlogSteps(BlogResponse blogResponse) {
-        this.blogResponse = blogResponse;
+    public BlogSteps(BlogApi blogApi) {
+        this.blogApi = blogApi;
     }
 
-    public boolean isEmpty() {
-        return blogResponse == null || blogResponse.getList() == null || blogResponse.getList().isEmpty();
+    public BlogSteps scrollUntilTitleFound(String searchTitle, BlogSegment segment, int pageSize, Locale locale) {
+        int pageIndex = 0;
+
+        while (true) {
+            BlogRequest request = new BlogRequest(segment, pageIndex, pageSize, locale);
+            response = blogApi.scrollSearch(request);
+
+            if (isEmptyResponse()) break;
+
+            String matchedTitle = findMatchingTitleIgnoreCase(searchTitle);
+            if (matchedTitle != null) {
+                logFoundTitle(matchedTitle);
+                titleFound = true;
+                break;
+            }
+            pageIndex++;
+        }
+
+        return this;
     }
 
-    public String findMatchingTitleIgnoreCase(String partialTitle) {
-        if (blogResponse == null || blogResponse.getList() == null) return null;
+    public BlogSteps assertTitleNotFound(String expectedTitle) {
+        if (!titleFound) {
+            System.err.printf("Expected to find title containing: %s%n", expectedTitle);
+        }
+        return this;
+    }
 
-        for (BlogEntry entry : blogResponse.getList()) {
+    private String findMatchingTitleIgnoreCase(String partialTitle) {
+        for (BlogEntry entry : response.getList()) {
             String fullTitle = entry.getTitle();
             if (fullTitle != null && fullTitle.toLowerCase().contains(partialTitle.toLowerCase())) {
                 return fullTitle;
@@ -30,15 +55,11 @@ public class BlogSteps {
         return null;
     }
 
-    public BlogSteps assertTitleNotFound(boolean found, String expectedTitle) {
-        if (!found) {
-            logger.warn("Expected to find title containing: " + expectedTitle);
-        }
-        return this;
+    private void logFoundTitle(String matchedTitle) {
+        System.out.printf("Found match. Full Title: %s%n", matchedTitle);
     }
-    public BlogSteps logFoundTitle(String matchedTitle) {
-        System.out.printf("Found match. Full Title: %s", matchedTitle);
-        return this;
+    private boolean isEmptyResponse() {
+        return response == null || response.getList() == null || response.getList().isEmpty();
     }
 }
 
