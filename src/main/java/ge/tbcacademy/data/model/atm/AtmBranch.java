@@ -1,4 +1,4 @@
-package ge.tbcacademy.data.model;
+package ge.tbcacademy.data.model.atm;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
