@@ -10,12 +10,11 @@ import org.testng.annotations.Test;
 import static ge.tbcacademy.data.Constants.*;
 
 @Epic("API")
-@Link(name = "CRM-T14", url = "https://shorturl.at/0kegg")
+@Link(name = "CRM-T14", url = "https://shorturl.at/AM226")
 @Listeners(AllureTestNg.class)
 public class TransferFeeTest extends BaseTest {
     @Story("Fee Validation")
-    @Test
-    @Description("Validate remittance fee with more than maximum amount")
+    @Test(description = "Validate remittance fee with more than maximum amount")
     @Severity(SeverityLevel.CRITICAL)
     public void validateFeeWithMoreThanMaximumAmount() {
         Response response = transferFeeApi.getTransferFee(AMOUNT_999999999, Curency.USD, CountryCode.USA);

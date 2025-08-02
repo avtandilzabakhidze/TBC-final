@@ -11,12 +11,11 @@ import static ge.tbcacademy.data.Constants.STATUS_200;
 
 
 @Epic("API")
-@Link(name = "CRM-T15", url = "https://shorturl.at/AM226")
+@Link(name = "CRM-T15", url = "https://shorturl.at/0kegg")
 @Listeners(AllureTestNg.class)
 public class AtmBranchApiTest extends BaseTest {
     @Story("Location Validation")
-    @Test
-    @Description("Validate ATM and Branch Locations Are Within Georgia")
+    @Test(description = "Validate ATM and Branch Locations Are Within Georgia")
     @Severity(SeverityLevel.CRITICAL)
     public void testATMAndBranchLocationsWithinGeorgia() {
         Response response = atmBranchApi.getAtmsAndBranches(Locale.GEORGIAN);
