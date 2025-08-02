@@ -1,6 +1,7 @@
 package ge.tbcacademy.steps;
 
 import ge.tbcacademy.data.model.atm.AtmBranch;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
@@ -16,18 +17,19 @@ public class AtmBranchSteps {
         this.response = response;
     }
 
+    @Step("Validate response status code is {expectedCode}")
     public AtmBranchSteps validateStatusCode(int expectedCode) {
         response.then().statusCode(expectedCode);
         return this;
     }
 
+    @Step("Validate content type is {expectedContentType}")
     public AtmBranchSteps validateContentType(String expectedContentType) {
         response.then().contentType(expectedContentType);
         return this;
     }
 
-    //    გრძედი: 41.0° ჩრ → 43.6° ჩრ
-    //    გრძედი: 40.0° აღმ → 47.5° აღმ
+    @Step("Validate all ATM coordinates are within Georgia boundaries")
     public AtmBranchSteps validateCoordinatesWithinGeorgia() {
         List<AtmBranch> data = response.jsonPath().getList(PAYLOAD_BRANCHES, AtmBranch.class);
         List<AtmBranch> invalidLocations = new ArrayList<>();
@@ -44,7 +46,8 @@ public class AtmBranchSteps {
             }
         }
 
-        Assert.assertTrue(invalidLocations.isEmpty(), OUTSIDE_GEORGIA);
+        Assert.assertTrue(invalidLocations.isEmpty(),
+                OUTSIDE_GEORGIA + ". Invalid locations found: " + invalidLocations.size());
         return this;
     }
 }
