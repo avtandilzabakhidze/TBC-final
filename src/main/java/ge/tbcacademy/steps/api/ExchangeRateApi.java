@@ -1,10 +1,11 @@
 package ge.tbcacademy.steps.api;
 
+import ge.tbcacademy.enums.Locale;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.testng.annotations.BeforeClass;
-import static ge.tbcacademy.data.Constants.BASE_URI;
+
+import static ge.tbcacademy.data.Constants.*;
 import static io.restassured.RestAssured.given;
 
 public class ExchangeRateApi {
@@ -12,11 +13,11 @@ public class ExchangeRateApi {
         RestAssured.baseURI = BASE_URI;
     }
 
-    public Response getCommercialList(String locale) {
+    public Response getCommercialList(Locale locale) {
         return given()
-                .queryParam("locale", locale)
+                .queryParam("locale", locale.getLocaleCode())
                 .when()
-                .get("/api/v1/exchangeRates/commercialList")
+                .get(COMMERCIAL_LIST_BASE_PATH)
                 .then()
                 .statusCode(200)
                 .extract()
@@ -25,12 +26,11 @@ public class ExchangeRateApi {
 
     public Response getExchangeRate(String iso1, String iso2) {
         return given()
-                .log().all()
-                .basePath("/api/v1/exchangeRates/getExchangeRate")
+                .basePath(EXCHANGE_RATES_BASE_PATH)
                 .queryParam("Iso1", iso1)
                 .queryParam("Iso2", iso2)
                 .accept(ContentType.JSON)
-                .header("origin", "https://tbcbank.ge")
+                .header("origin", TBC_URL)
                 .when()
                 .get()
                 .then()

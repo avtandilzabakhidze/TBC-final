@@ -4,9 +4,7 @@ import ge.tbcacademy.data.model.blogs.BlogEntry;
 import ge.tbcacademy.data.model.blogs.BlogResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 
-import java.util.Objects;
 
 public class BlogSteps {
     private final BlogResponse blogResponse;
@@ -36,6 +34,10 @@ public class BlogSteps {
         if (!found) {
             logger.warn("Expected to find title containing: " + expectedTitle);
         }
+        return this;
+    }
+    public BlogSteps logFoundTitle(String matchedTitle) {
+        System.out.printf("Found match. Full Title: %s", matchedTitle);
         return this;
     }
 }
