@@ -3,24 +3,21 @@ import ge.tbcacademy.data.model.blogs.BlogResponse;
 import ge.tbcacademy.enums.BlogSegment;
 import ge.tbcacademy.enums.Locale;
 import ge.tbcacademy.steps.BlogSteps;
-import ge.tbcacademy.steps.api.BlogApi;
-import io.restassured.RestAssured;
-import org.testng.annotations.BeforeClass;
+import io.qameta.allure.*;
+import io.qameta.allure.testng.AllureTestNg;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import static ge.tbcacademy.data.Constants.*;
+import static ge.tbcacademy.data.Constants.PAGE_SIZE;
+import static ge.tbcacademy.data.Constants.SEARCH_TITLE;
 
-
-public class BlogScrollSearchTest {
-    private BlogApi blogApi;
-
-    @BeforeClass
-    public void setup() {
-        RestAssured.baseURI = BASE_URI;
-        blogApi = new BlogApi();
-    }
-
-    @Test
+@Epic("API")
+@Link(name = "CRM-T12", url = "https://shorturl.at/bGVVf")
+@Listeners(AllureTestNg.class)
+public class BlogScrollSearchTest extends BaseTest {
+    @Story("Test Currency Exchange Rate Public API")
+    @Test(description = "Fetch Blogs Until Title Is Found or Confirmed Missing")
+    @Severity(SeverityLevel.CRITICAL)
     public void scrollSearchUsingPojoAndSteps() {
         int pageIndex = 0;
         boolean titleFound = false;
@@ -44,5 +41,4 @@ public class BlogScrollSearchTest {
 
         new BlogSteps(null).assertTitleNotFound(titleFound, SEARCH_TITLE);
     }
-
 }
