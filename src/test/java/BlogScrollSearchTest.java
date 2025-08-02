@@ -8,7 +8,7 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static ge.tbcacademy.data.Constants.BASE_URI;
+import static ge.tbcacademy.data.Constants.*;
 
 
 public class BlogScrollSearchTest {
@@ -22,31 +22,27 @@ public class BlogScrollSearchTest {
 
     @Test
     public void scrollSearchUsingPojoAndSteps() {
-        String searchTitle = "ფოტოasdგრაფ ელენე შენგელიას პასუხი";
-        int pageSize = 10;
         int pageIndex = 0;
-
         boolean titleFound = false;
         String matchedFullTitle = null;
 
         while (true) {
-            BlogRequest request = new BlogRequest(BlogSegment.ALL, pageIndex, pageSize, Locale.GEORGIAN);
+            BlogRequest request = new BlogRequest(BlogSegment.ALL, pageIndex, PAGE_SIZE, Locale.GEORGIAN);
             BlogResponse response = blogApi.scrollSearch(request);
-
             BlogSteps steps = new BlogSteps(response);
 
             if (steps.isEmpty()) break;
 
-            matchedFullTitle = steps.findMatchingTitleIgnoreCase(searchTitle);
+            matchedFullTitle = steps.findMatchingTitleIgnoreCase(SEARCH_TITLE);
             if (matchedFullTitle != null) {
-                System.out.println("Found match. Full Title: " + matchedFullTitle);
+                steps.logFoundTitle(matchedFullTitle);
                 titleFound = true;
                 break;
             }
             pageIndex++;
         }
 
-        new BlogSteps(null).assertTitleNotFound(titleFound, searchTitle);
+        new BlogSteps(null).assertTitleNotFound(titleFound, SEARCH_TITLE);
     }
 
 }

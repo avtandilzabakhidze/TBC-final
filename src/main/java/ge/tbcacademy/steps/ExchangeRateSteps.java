@@ -1,65 +1,52 @@
 package ge.tbcacademy.steps;
 
-import ge.tbcacademy.enums.Locale;
-import ge.tbcacademy.steps.api.ExchangeRateApi;
 import io.restassured.response.Response;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static ge.tbcacademy.data.Constants.*;
 import static org.hamcrest.Matchers.*;
 
 public class ExchangeRateSteps {
 
-    private final ExchangeRateApi api = new ExchangeRateApi();
-    private Set<String> validIsos;
 
-    private Response rateResponse;
+    private Response response;
     private String iso1;
     private String iso2;
 
-    public ExchangeRateSteps fetchValidIsos() {
-        Response response = api.getCommercialList("ka-GE");
-        List<String> isoList = response.jsonPath().getList("rates.iso");
-        this.validIsos = new HashSet<>(isoList);
-        return this;
+    public ExchangeRateSteps(Response response) {
+        this.response = response;
     }
 
-    public ExchangeRateSteps requestExchangeRate(String iso1, String iso2) {
-        this.iso1 = iso1;
-        this.iso2 = iso2;
+    public ExchangeRateSteps validateIsos(String iso1, String iso2) {
+        List<String> isoList = response.jsonPath().getList(RATES_ISO_PATH);
+        isoList.add(GEL);
 
-        boolean iso1Valid = validIsos.contains(iso1);
-        boolean iso2Valid = validIsos.contains(iso2) || "GEL".equalsIgnoreCase(iso2);
-
-        if (!iso1Valid || !iso2Valid) {
+        if (!isoList.contains(iso1) || !isoList.contains(iso2)) {
             throw new IllegalArgumentException(
                     String.format("Invalid ISOs: iso1=%s, iso2=%s", iso1, iso2)
             );
         }
-
-        this.rateResponse = api.getExchangeRate(iso1, iso2);
         return this;
     }
 
-    public ExchangeRateSteps validateExchangeRateFields() {
-        rateResponse.then()
-                .body("iso1", equalTo(iso1))
-                .body("iso2", equalTo(iso2))
-                .body("buyRate", notNullValue())
-                .body("sellRate", notNullValue());
+    public ExchangeRateSteps validateExchangeRateFields(String iso1, String iso2) {
+        this.iso1 = iso1;
+        this.iso2 = iso2;
+        response.then()
+                .body(ISO1_PATH, equalTo(iso1))
+                .body(ISO2_PATH, equalTo(iso2))
+                .body(BUY_RATE_PATH, allOf(notNullValue(), greaterThan(0f)))
+                .body(SELL_RATE_PATH, allOf(notNullValue(), greaterThan(0f)));
         return this;
     }
+
 
     public ExchangeRateSteps printRates() {
-        float buy = rateResponse.path("buyRate");
-        float sell = rateResponse.path("sellRate");
+        float buy = response.path(BUY_RATE_PATH);
+        float sell = response.path(SELL_RATE_PATH);
 
         System.out.printf("Exchange Rate: %s → %s | Buy: %.4f | Sell: %.4f%n", iso1, iso2, buy, sell);
         return this;
     }
-
 }
